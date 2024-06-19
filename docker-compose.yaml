@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  api-blaster:
+    build:
+      dockerfile: dockerfile
+    container_name: blaster-api
+    volumes:
+      - ${VOLUME_BLASTER}/logs:/app/dist/logs
+      - ${VOLUME_BLASTER}/db:/app/dist/prisma/db
+    ports:
+      - "3076:3076"

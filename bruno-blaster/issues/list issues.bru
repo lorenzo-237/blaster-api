@@ -1,0 +1,19 @@
+meta {
+  name: list issues
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3076/issues?project_id=1&target_version=3.3.1.6
+  body: none
+  auth: none
+}
+
+query {
+  project_id: 1
+  target_version: 3.3.1.6
+  ~fixed_in_version: 2.4.3.162
+  ~category_id: 2
+  ~status: 60
+}

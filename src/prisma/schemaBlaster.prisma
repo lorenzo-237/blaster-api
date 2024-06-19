@@ -1,0 +1,36 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated/blaster-cli"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./db/blast.db"
+}
+
+model User {
+    id                 Int    @id @default(autoincrement())
+    username           String @unique
+    password           String
+    token              String
+    lastVersionCreated String @default("")
+    socket_id          String @default("")
+}
+
+model Token {
+    id   Int    @id @default(autoincrement())
+    data String
+}
+
+model Package {
+    id              Int      @id @default(autoincrement())
+    projectId       Int
+    version         String
+    htmlHeader      String
+    clientChangelog String
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @default(now()) @updatedAt()
+    obsolete        Boolean
+
+    @@unique([projectId, version])
+}
